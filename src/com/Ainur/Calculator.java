@@ -67,6 +67,8 @@ public class Calculator {
         } else if (input.indexOf('/') > 0){
             indexOfOper = input.indexOf('/');
             operation = '/';
+        } else {
+            throw new Exception() ;
         }
 
         firstNumber = input.substring(0,indexOfOper);
