@@ -13,7 +13,11 @@ public class Calculator {
     public static String calculate(String input) throws Exception {
         int result = 0;
         parse(input);
-        if (intNumOne < 1 || intNumTwo > 10 || intNumTwo < 1 || intNumTwo > 10 ){
+        if (intNumOne < 1 || intNumTwo > 10) {
+            System.out.println("First number is out of limits");
+            throw new Exception();
+        } else if (intNumTwo < 1 || intNumTwo > 10 ) {
+            System.out.println("Second number is out of limits");
             throw new Exception();
         }
         switch (operation){
@@ -68,7 +72,8 @@ public class Calculator {
             indexOfOper = input.indexOf('/');
             operation = '/';
         } else {
-            throw new Exception() ;
+            System.out.println("Operation is undifined");
+            throw new Exception();
         }
 
         firstNumber = input.substring(0,indexOfOper);
@@ -79,16 +84,28 @@ public class Calculator {
         if ( firstNumber.charAt(0) >= '1' && firstNumber.charAt(0) <= '9'){
             try {
                 intNumOne =strArabicToInt(firstNumber);
+            } catch (Exception e){
+                System.out.println("Wrong input for first Arabic number");
+                throw e;
+            }
+            try {
                 intNumTwo = strArabicToInt(secondNumber);
             } catch (Exception e){
+                System.out.println("Wrong input for second Arabic number");
                 throw e;
             }
         } else {
             isRomanNum = true;
             try{
                 intNumOne = strRomanToInt(firstNumber);
+            } catch (Exception e){
+                System.out.println("Wrong input for first Roman number");
+                throw e;
+            }
+            try{
                 intNumTwo = strRomanToInt(secondNumber);
             } catch (Exception e){
+                System.out.println("Wrong input for second Roman number");
                 throw e;
             }
         }
